@@ -5,7 +5,15 @@
 #include <readline/history.h>
 #include <string.h>
 
-void subCom(char *com);
+#include "coms.h"
+
+Com* subCom(char *com);
+
+/* Use this to judge whether the program is running or not */
+int isRun = 1;
+
+/* store the command and its args */
+//char* comss[];
 
 /*
  * @author hongbochen
@@ -19,9 +27,6 @@ int main(int argc,char *argv[])
     char prompt[200];
     /* The command the user input */
     char* line;
-
-    /* Use this to judge whether the program is running or not */
-    int isRun = 1;
 
     // The variable of this prog
     int i = 0;
@@ -42,8 +47,10 @@ int main(int argc,char *argv[])
       }
       */
 
-      subCom(line);
+      // get the split command the user input
+      Com* cms = subCom(line);
 
+      printf("%s\n", cms->coms[0]);
 
     }
 }
@@ -56,15 +63,35 @@ int main(int argc,char *argv[])
  * @date 2016-08-24
  * @note In this version, We just split the string using blank
  */
-void subCom(char *com){
+Com* subCom(char *com){
+  char* comss[50];
+
   char *token = strtok(com, " ");
+
+  int nums = 0;
+
+  Com* bc;
 
   while(token != NULL)
   {
     //print the split string
-    printf("%s\n", token);
+    //printf("%s\n", token);
+    comss[nums] = (char *)malloc(sizeof(char) * 20);
+    strcpy(comss[nums], token);
 
     // go to the next token
     token = strtok(NULL, " ");
+
+    nums++;
   }
+
+  //return comss;
+  bc->coms = comss;
+  bc->tnum = nums;
+
+  return bc;
+}
+
+void dealCom(){
+
 }
