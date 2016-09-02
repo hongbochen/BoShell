@@ -7,13 +7,8 @@
 
 #include "coms.h"
 
-Com* subCom(char *com);
-
 /* Use this to judge whether the program is running or not */
 int isRun = 1;
-
-/* store the command and its args */
-//char* comss[];
 
 /*
  * @author hongbochen
@@ -49,49 +44,6 @@ int main(int argc,char *argv[])
 
       // get the split command the user input
       Com* cms = subCom(line);
-
-      printf("%s\n", cms->coms[0]);
-
+      dealCom(cms);
     }
-}
-
-
-/**
- * 解析用户输入的命令
- * @param com 用户输入的命令字符串
- * @author hongbochen
- * @date 2016-08-24
- * @note In this version, We just split the string using blank
- */
-Com* subCom(char *com){
-  char* comss[50];
-
-  char *token = strtok(com, " ");
-
-  int nums = 0;
-
-  Com* bc;
-
-  while(token != NULL)
-  {
-    //print the split string
-    //printf("%s\n", token);
-    comss[nums] = (char *)malloc(sizeof(char) * 20);
-    strcpy(comss[nums], token);
-
-    // go to the next token
-    token = strtok(NULL, " ");
-
-    nums++;
-  }
-
-  //return comss;
-  bc->coms = comss;
-  bc->tnum = nums;
-
-  return bc;
-}
-
-void dealCom(){
-
 }
